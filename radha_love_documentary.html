@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krishna & Radha – Oka Nijamaina Prema Katha</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Telugu:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep: #0a0408;
+    --crimson: #8b1a2e;
+    --rose: #c4405a;
+    --blush: #e8758a;
+    --gold: #c9a84c;
+    --cream: #f5ede0;
+    --soft: #f9f3eb;
+    --muted: #9c7b7b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+
+  /* ── OPENING TITLE ── */
+  #opening {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 2rem;
+  }
+
+  #opening::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 30% 40%, rgba(139,26,46,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 70% 60%, rgba(196,64,90,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 80% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    animation: breathe 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes breathe {
+    from { opacity: 0.7; transform: scale(1); }
+    to   { opacity: 1;   transform: scale(1.04); }
+  }
+
+  .petals-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .petal {
+    position: absolute;
+    width: 8px;
+    height: 12px;
+    border-radius: 50% 0 50% 0;
+    opacity: 0;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.4; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  .opening-subtitle {
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 0.5s;
+  }
+
+  .opening-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--gold) 50%, var(--blush) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    animation: fadeUp 1.4s ease forwards 0.9s;
+    margin-bottom: 1.5rem;
+  }
+
+  .opening-names {
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    color: var(--blush);
+    opacity: 0;
+    animation: fadeUp 1.4s ease forwards 1.3s;
+    margin-bottom: 3rem;
+  }
+
+  .heart-divider {
+    font-size: 2rem;
+    color: var(--rose);
+    display: inline-block;
+    animation: pulse 2s ease-in-out infinite;
+    opacity: 0;
+    animation: pulse 2s ease-in-out infinite, fadeUp 1s ease forwards 1.7s;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.2); }
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 2.5s, blink 2s ease-in-out 3s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 0.5; }
+    50%       { opacity: 1; }
+  }
+
+  /* ── CHAPTER WRAPPER ── */
+  .chapter {
+    position: relative;
+    padding: 6rem 2rem;
+    max-width: 860px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .chapter.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── CHAPTER NUMBER ── */
+  .chapter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    font-weight: 700;
+    color: rgba(139,26,46,0.12);
+    position: absolute;
+    top: 2rem;
+    left: -1rem;
+    line-height: 1;
+    user-select: none;
+  }
+
+  /* ── CHAPTER LABEL ── */
+  .chapter-label {
+    display: inline-block;
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid rgba(201,168,76,0.4);
+    padding-bottom: 0.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-style: italic;
+    color: var(--cream);
+    margin-bottom: 2rem;
+    line-height: 1.3;
+  }
+
+  .chapter-body {
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: clamp(1rem, 2.2vw, 1.18rem);
+    line-height: 2;
+    color: rgba(245,237,224,0.88);
+  }
+
+  .chapter-body p {
+    margin-bottom: 1.4rem;
+  }
+
+  /* ── QUOTE BLOCK ── */
+  .quote-block {
+    position: relative;
+    margin: 3rem 0;
+    padding: 2rem 2.5rem;
+    border-left: 3px solid var(--rose);
+    background: linear-gradient(135deg, rgba(139,26,46,0.12), rgba(196,64,90,0.06));
+    border-radius: 0 12px 12px 0;
+  }
+
+  .quote-block::before {
+    content: '❝';
+    position: absolute;
+    top: -0.5rem;
+    left: 1rem;
+    font-size: 3rem;
+    color: var(--rose);
+    opacity: 0.5;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    color: var(--cream);
+    line-height: 1.7;
+  }
+
+  .quote-telugu {
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: var(--blush);
+    margin-top: 0.8rem;
+    line-height: 1.8;
+  }
+
+  /* ── MEMORY CARD ── */
+  .memory-card {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(139,26,46,0.12));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .memory-card::after {
+    content: '🌸';
+    position: absolute;
+    bottom: 0.5rem;
+    right: 1rem;
+    font-size: 3rem;
+    opacity: 0.15;
+  }
+
+  .memory-label {
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .memory-text {
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: clamp(1rem, 2vw, 1.12rem);
+    color: var(--cream);
+    line-height: 2;
+  }
+
+  /* ── SEPARATOR ── */
+  .sep {
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 1.4rem;
+    color: var(--rose);
+    letter-spacing: 1rem;
+    opacity: 0.6;
+  }
+
+  /* ── FINAL SECTION ── */
+  #finale {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #finale::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 50%, rgba(139,26,46,0.3) 0%, transparent 70%);
+    animation: breathe 6s ease-in-out infinite alternate;
+  }
+
+  .finale-label {
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .finale-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-style: italic;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--blush), var(--gold), var(--cream));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .finale-message {
+    max-width: 600px;
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+    line-height: 2;
+    color: rgba(245,237,224,0.85);
+    margin-bottom: 3rem;
+  }
+
+  .finale-heart {
+    font-size: 4rem;
+    animation: pulse 1.5s ease-in-out infinite;
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  .finale-sign {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--gold);
+  }
+
+  .finale-sign span {
+    display: block;
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+    letter-spacing: 0.2em;
+  }
+
+  /* ── ORNAMENTAL DIVIDER ── */
+  .ornament {
+    text-align: center;
+    color: var(--rose);
+    font-size: 1.2rem;
+    opacity: 0.5;
+    padding: 1rem;
+  }
+
+  /* ── FILM GRAIN OVERLAY ── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ── TIMELINE LINE ── */
+  .timeline-line {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--rose), transparent);
+    margin: 0 auto 3rem;
+  }
+
+  /* ── UTILS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .highlight {
+    color: var(--blush);
+    font-style: italic;
+  }
+
+  .gold { color: var(--gold); }
+
+  /* responsive */
+  @media (max-width: 600px) {
+    .chapter-num { font-size: 5rem; left: 0; }
+    .chapter { padding: 5rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FALLING PETALS -->
+<div class="petals-container" id="petals"></div>
+
+<!-- ══════════════════════════════════
+     OPENING
+════════════════════════════════════ -->
+<section id="opening">
+  <p class="opening-subtitle">ఒక నిజమైన ప్రేమ కథ · A True Love Story</p>
+  <h1 class="opening-title">Krishna & Radha</h1>
+  <p class="opening-names">మూడు సంవత్సరాల మౌన ప్రేమ</p>
+  <div class="heart-divider">❤️‍🩹</div>
+  <p class="scroll-hint">↓ కింద స్క్రోల్ చేయండి</p>
+</section>
+
+<div class="timeline-line"></div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 1
+════════════════════════════════════ -->
+<section class="chapter" id="ch1">
+  <div class="chapter-num">01</div>
+  <p class="chapter-label">మొదలు · The Beginning</p>
+  <h2 class="chapter-title">"మూడు సంవత్సరాల క్రితం… ఒక రోజు నా జీవితాన్ని మార్చింది"</h2>
+  <div class="chapter-body">
+    <p>మూడు సంవత్సరాల క్రితం, నేను నిన్ను మొదటిసారి చూసిన ఆ రోజు — నా జీవితంలో ఒక <span class="highlight">silent story</span> మొదలైంది. అప్పుడు నాకు తెలియలేదు, అది నా జీవితంలో అత్యంత అందమైన అధ్యాయం అవుతుందని.</p>
+    <p>నువ్వు అప్పుడు Inter 1st year లో ఉన్నావు — చిన్న వయసులో, పెద్ద కళ్ళతో, నవ్వు అంటే ఏమిటో తెలిపే ఆ నవ్వుతో. నేను నిన్ను చూస్తూ చూస్తూ, <span class="highlight">తెలియకుండానే</span> ఇష్టపడటం మొదలుపెట్టాను.</p>
+    <p>ఆ feeling నాకు కూడా తెలియకుండా పెరిగింది — నది నిదానంగా పెరిగినట్టు, ఎవరికీ తెలియకుండా, కానీ ఎంతో లోతుగా.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"Love begins where words end…"</p>
+    <p class="quote-telugu">ప్రేమ మొదలయ్యే చోట మాటలు ఆగిపోతాయి… అదే నా కథ.</p>
+  </div>
+</section>
+
+<div class="ornament">✦ · ✦ · ✦</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 2
+════════════════════════════════════ -->
+<section class="chapter" id="ch2">
+  <div class="chapter-num">02</div>
+  <p class="chapter-label">దూరపు ప్రయాణం · The Miles I Traveled</p>
+  <h2 class="chapter-title">"Kilometers దాటి నిన్ను చూడటానికి వచ్చిన రోజులు…"</h2>
+  <div class="chapter-body">
+    <p>Chennai నుండి ఇంటికి వచ్చినప్పుడు కూడా — బ్యాగ్ పెట్టుకోవడం కాదు, నీకు ఒక్కసారి కనిపించాలని ఉంది. ఆ కోరిక ఎంత బలంగా ఉంటుందో — miles మాట్లాడవు, కానీ heart మాట్లాడుతుంది.</p>
+    <p>అలసిన రోజులు కూడా, నిన్ను చూస్తే అలసట మాయమైపోయేది. అది ప్రేమ యొక్క శక్తి — దానికి logic ఉండదు, కానీ truth ఉంటుంది.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">💌 మనసు మాట</p>
+    <p class="memory-text">నువ్వు block చేసినా, నేను వెనక్కి తిరిగాను. కానీ నీపై కోపం కాదు — ఎందుకంటే నువ్వు ఆ block చేసినప్పుడు కూడా నాకు నువ్వే గుర్తొచ్చావు. అది ప్రేమ కాకపోతే మరేమిటి?</p>
+  </div>
+</section>
+
+<div class="sep">· · ❤️‍🩹 · ·</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 3
+════════════════════════════════════ -->
+<section class="chapter" id="ch3">
+  <div class="chapter-num">03</div>
+  <p class="chapter-label">చిన్న replies · Small Words, Big Feelings</p>
+  <h2 class="chapter-title">"ఆ small replies కూడా నాకు చాలా happiness ఇచ్చాయి…"</h2>
+  <div class="chapter-body">
+    <p>నేను నిన్ను disturb చేయాలని కాదు — నీతో మాట్లాడితే చాలు అని అనిపించేది. ఒక్క "ok" కూడా నా రోజుని చేసేది. అది నువ్వు అర్థం చేసుకుంటావో లేదో తెలియదు — కానీ నాకు మాత్రం ఆ moments జీవితంలో most precious గా అనిపించాయి.</p>
+    <p>ప్రేమలో <span class="highlight">expectations</span> ఉండవు — ఉంటే అది ప్రేమ కాదు, bargain అవుతుంది. నా ప్రేమలో నీకు ఏదైనా ఇవ్వాలని ఉంది, తీసుకోవాలని కాదు.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"The most painful love is the one that stays silent — not because it is weak, but because it is true."</p>
+    <p class="quote-telugu">మౌనంగా ఉండే ప్రేమ బలహీనత వల్ల కాదు — అది నిజమైన ప్రేమ కాబట్టి.</p>
+  </div>
+</section>
+
+<div class="ornament">✦ · ✦ · ✦</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 4
+════════════════════════════════════ -->
+<section class="chapter" id="ch4">
+  <div class="chapter-num">04</div>
+  <p class="chapter-label">ఆమె కల · Her Dream</p>
+  <h2 class="chapter-title">"తను చదువుతుంది… ఆ path లో అన్నీ మంచి జరగాలి"</h2>
+  <div class="chapter-body">
+    <p>Radha ఇంకా చదువుతుంది — కష్టపడుతుంది. ఆ dedication, ఆ struggle — నేను దూరంగా ఉన్నా నాకు అర్థమవుతుంది.</p>
+    <p>తన చదువు పూర్తయి మంచి job వచ్చే రోజు కోసం నా మనసు ఎదురు చూస్తుంది. ఆ రోజు తప్పకుండా వస్తుంది — <span class="highlight">ఎందుకంటే ఆమె deserve చేస్తుంది.</span></p>
+    <p>నువ్వు నన్ను love చేయాలని నేను ఎప్పుడూ expect చేయలేదు. నీ life లో నువ్వు వెలిగిపోవడం చూడడమే నాకు reward.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">🌸 Sankranti Memory</p>
+    <p class="memory-text">Sankranti time లో నిన్ను చూసిన ఆ కొన్ని నిమిషాలు… నువ్వు steps మీద కూర్చుని నవ్విన ఆ moment… అది నా జీవితంలో best memory. Time ఆగిపోయినట్టు అనిపించింది. ఆ నవ్వు నా మనసులో ఇంకా తాజాగా ఉంది — ఎప్పటికీ fade అవదు.</p>
+  </div>
+</section>
+
+<div class="sep">· · 🌹 · ·</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 5
+════════════════════════════════════ -->
+<section class="chapter" id="ch5">
+  <div class="chapter-num">05</div>
+  <p class="chapter-label">మౌన శక్తి · The Strength of Silence</p>
+  <h2 class="chapter-title">"కొన్ని రోజులు మాట్లాడకపోయినా… ప్రేమ తగ్గలేదు"</h2>
+  <div class="chapter-body">
+    <p>Gap వచ్చినా, silence వచ్చినా — నా ప్రేమ ఒక్క అడుగు కూడా వెనక్కి వెళ్ళలేదు. కొన్ని ప్రేమలు మాట్లాడవు, కానీ మోస్తాయి. అది weak అని కాదు — అది <span class="highlight">silent strength</span>.</p>
+    <p>నీకు నచ్చకపోయినా, నన్ను notice చేయకపోయినా — నా మనసు మాత్రం నిన్ను ఎప్పుడూ wish చేస్తుంది. "వాడికి మంచి జరగాలి" అని.</p>
+    <p>ఇది time pass కాదు — ఇది నా parents కి కూడా చెప్పిన నిజం. అది ఎంత serious గా నాకు feel అవుతుందో అర్థమవుతుంది.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"Real love doesn't need to be returned to exist. It exists because it must."</p>
+    <p class="quote-telugu">నిజమైన ప్రేమకు తిరిగి రావాల్సిన అవసరం లేదు — అది ఉండాలి కాబట్టి ఉంటుంది.</p>
+  </div>
+</section>
+
+<div class="ornament">✦ · ✦ · ✦</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 6
+════════════════════════════════════ -->
+<section class="chapter" id="ch6">
+  <div class="chapter-num">06</div>
+  <p class="chapter-label">India రావాలని · The Longing to Return</p>
+  <h2 class="chapter-title">"India కి రావాలని ఉంది… Main reason నువ్వే"</h2>
+  <div class="chapter-body">
+    <p>దూరంగా ఉంటే మనసు మరింత బలంగా అనిపిస్తుంది. India లో ఉంటే బాగుండేది అని అనిపించే ప్రతిసారీ — నువ్వే కారణం.</p>
+    <p>కానీ నిన్ను force చేయను. నీ జీవితంలో నీ choices నీవే తీసుకో — నేను నిన్ను wait చేయమని కూడా అడగను. ఎందుకంటే ప్రేమ అంటే <span class="highlight">possession కాదు, care</span>.</p>
+    <p>నువ్వు happy గా ఉంటే — ఆ happiness నాకూ వస్తుంది. ఇదే నా philosophy, ఇదే నా prayer.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">💫 నా కోరిక · My Only Wish</p>
+    <p class="memory-text">నువ్వు నవ్వితే చాలు — నా రోజు complete అయినట్టే. నువ్వు happy గా ఉంటే చాలు — నాకు ఇంక ఏమీ వద్దు. అది నా love యొక్క పరిమితి కాదు — అది నా love యొక్క పరిపూర్ణత.</p>
+  </div>
+</section>
+
+<div class="ornament">✦ · ✦ · ✦</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 7
+════════════════════════════════════ -->
+<section class="chapter" id="ch7">
+  <div class="chapter-num">07</div>
+  <p class="chapter-label">నీ కష్టం · Her Struggle, My Prayer</p>
+  <h2 class="chapter-title">"తను ఇంకా చదువుతుంది… ఆ studies పూర్తయి మంచి రోజు రావాలి"</h2>
+  <div class="chapter-body">
+    <p>Radha — నువ్వు ఇప్పుడు కష్టపడుతున్నావు. ఆ struggle నాకు కనిపిస్తుంది. ప్రతి rejection, ప్రతి wait — ఆ pain నీకు ఎంత ఉంటుందో నాకు అర్థమవుతుంది. కానీ నువ్వు break కావు — ఎందుకంటే నువ్వు strong.</p>
+    <p>తను ఇంకా చదువుతుంది — ప్రతి exam, ప్రతి రోజు కష్టపడుతుంది. ఆ struggle నాకు కనిపిస్తుంది. నా దగ్గర ఒక్క prayer మాత్రమే ఉంది — <span class="highlight">అది నేను ప్రతిరోజూ చేస్తున్నాను.</span></p>
+    <p>తన studies complete అయి, మంచి job వచ్చే ఆ రోజు కోసం నేను కూడా ఎదురు చూస్తున్నాను. ఆ రోజు తప్పకుండా వస్తుంది Radha — నువ్వు deserve చేస్తావు.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"The one who prays hardest for your success is not always the one standing beside you."</p>
+    <p class="quote-telugu">నీ success కోసం అత్యంత గట్టిగా pray చేసే వ్యక్తి నీ పక్కన ఉండకపోవచ్చు — కానీ ఉన్నాడు.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">🙏 నా Daily Prayer</p>
+    <p class="memory-text">దేవుడా — ఈ రోజు Radha కి ఒక మంచి opportunity ఇవ్వు. ఆమె కష్టానికి తగ్గ result ఇవ్వు. ఆమె అమ్మ నాన్న మొహంలో సంతోషం చూపించు. ఇది నా ఒక్క కోరిక — ప్రతిరోజూ, ప్రతి రాత్రి.</p>
+  </div>
+</section>
+
+<div class="sep">· · 🌸 · ·</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 8
+════════════════════════════════════ -->
+<section class="chapter" id="ch8">
+  <div class="chapter-num">08</div>
+  <p class="chapter-label">అమ్మ నాన్న · For Her Parents</p>
+  <h2 class="chapter-title">"తను వల్ల ఆమె అమ్మ నాన్న బాగా చేసుకోవాలి…"</h2>
+  <div class="chapter-body">
+    <p>Radha BSc Nursing చదువుతూనే తన అమ్మ నాన్న కోసం ఆలోచిస్తుంది — ఆ love చాలా అందంగా ఉంటుంది. చదువు పూర్తయి తను స్వంత కాళ్ళపై నిలబడి తన family ని చూసుకోవాలని ఆమె కల — అది చాలా గొప్ప మనసు.</p>
+    <p>ఆమె అమ్మ నాన్న ఆమె వల్ల బాగా చేసుకోవాలి — ఆ కోరిక నాది కూడా. ఆ family లో నవ్వు ఉండాలి, peace ఉండాలి. <span class="highlight">Radha వల్ల వాళ్ళకి అన్నీ జరగాలి.</span></p>
+    <p>నేను దూరంగా ఉన్నా — ఆమె family కి మనసులో దండం పెట్టుకుంటాను. ఎందుకంటే వాళ్ళు నాకు ఇష్టమైన అమ్మాయిని పెంచారు.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">💛 వాళ్ళ అమ్మాయి గురించి నాకు తెలుసు</p>
+    <p class="memory-text">మీ అమ్మాయి మీ కోసం ఎంతగా ఆలోచిస్తుందో నాకు తెలుసు. ఆమె మిమ్మల్ని disappoint చేయదు. ఆ రోజు వస్తుంది — ఆమె మీ మొహంలో గర్వం చూస్తుంది. ఆ రోజు నేను దూరంగా ఉన్నా — నా మనసు మొత్తం మీతో celebrate చేస్తుంది.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"A daughter who fights for her family is the strongest kind of love there is."</p>
+    <p class="quote-telugu">తన family కోసం పోరాడే అమ్మాయి — ఆ ప్రేమ అత్యంత బలమైనది. అదే Radha.</p>
+  </div>
+</section>
+
+<div class="ornament">✦ · ✦ · ✦</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 9
+════════════════════════════════════ -->
+<section class="chapter" id="ch9">
+  <div class="chapter-num">09</div>
+  <p class="chapter-label">నా జీవితంలో నువ్వు · You in My Life</p>
+  <h2 class="chapter-title">"నీ life లో నేను కూడా రావాలని ఉంది… అది నా కల"</h2>
+  <div class="chapter-body">
+    <p>Radha, నిజంగా చెప్పాలంటే — నువ్వు నా life లో రావాలని ఉంది. కేవలం ఒక person గా కాదు — నా partner గా, నా సంతోషంగా, నా future గా. ఆ కల నాలో బతుకుతుంది.</p>
+    <p>కానీ నేను నిన్ను force చేయను. నువ్వు ready గా అనిపించినప్పుడు, నువ్వే నన్ను choose చేసినప్పుడు — అప్పుడు మాత్రమే అది అర్థమవుతుంది. <span class="highlight">నీ happiness నీ choice లో ఉంది — నా love నీ decision కోసం wait చేస్తుంది.</span></p>
+    <p>నువ్వు నా life లో లేకపోయినా — నేను నీ well-wisher గా ఉంటాను. నీకు మంచి జరగాలని, నీ కల తీరాలని, నీ అమ్మ నాన్న proud పడాలని — ఇవే నా prayers.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">🌙 నా కల లో నువ్వు</p>
+    <p class="memory-text">నువ్వు happy గా ఉన్నావు, నీ అమ్మ నాన్న నవ్వుతున్నారు, నేను కూడా ఆ నవ్వులో ఒక చిన్న part గా ఉన్నాను — అది నా dream. Simple కానీ నాకు అది whole universe. ఆ రోజు వస్తుందా అని నాకు తెలియదు — కానీ ఆ dream ని నేను놓 వదలను.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"I don't just want her happy — I want to be the reason, someday, if she lets me."</p>
+    <p class="quote-telugu">ఆమె happy గా ఉండాలని కోరుకుంటున్నాను — ఒకరోజు ఆ happiness కి నేను కారణం అవ్వాలని కూడా కోరుకుంటున్నాను, ఆమె permit చేస్తే.</p>
+  </div>
+</section>
+
+<div class="sep">· · ❤️‍🩹 · ·</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 10
+════════════════════════════════════ -->
+<section class="chapter" id="ch10">
+  <div class="chapter-num">10</div>
+  <p class="chapter-label">మూడు సంవత్సరాల సత్యం · Three Years of Truth</p>
+  <h2 class="chapter-title">"మూడు సంవత్సరాలు గడిచినా… నా ప్రేమ మారలేదు"</h2>
+  <div class="chapter-body">
+    <p>మూడు సంవత్సరాలు అంటే చిన్న విషయం కాదు. చాలా మంది వదిలేస్తారు, మర్చిపోతారు, move on అవుతారు. కానీ నేను ఇంకా ఇక్కడే ఉన్నాను — అదే feeling తో, అదే care తో, అదే silent love తో.</p>
+    <p>ఇది weakness కాదు — ఇది నా strength. నిజమైన ప్రేమకు time expire అవదు. నువ్వు నన్ను notice చేయకపోయినా, నేను నిన్ను notice చేయడం ఆపలేదు — <span class="highlight">మంచి కోసం.</span></p>
+    <p>ఈ మూడు సంవత్సరాలు నాకు నేను ఒక విషయం నేర్పాయి — ప్రేమించడం నా వల్ల అవుతుంది. అది నా gift. దానికి నేను proud గా ఉన్నాను.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">📖 మూడు సంవత్సరాల diary</p>
+    <p class="memory-text">Day 1: నిన్ను చూసాను. Day 365: ఇంకా నీకోసమే ఉన్నాను. Day 730: నీ success కోసం pray చేస్తున్నాను. Day 1095: ఇంకా నీకోసమే ఉన్నాను — ఇంకా అదే love తో, ఇంకా అదే heart తో. ఇది నా మూడు సంవత్సరాల story.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"Three years of silence is not emptiness — it is the fullest kind of love."</p>
+    <p class="quote-telugu">మూడు సంవత్సరాల మౌనం అంటే శూన్యం కాదు — అది అత్యంత నిండైన ప్రేమ.</p>
+  </div>
+</section>
+
+<div class="ornament">✦ · ✦ · ✦</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 11
+════════════════════════════════════ -->
+<section class="chapter" id="ch11">
+  <div class="chapter-num">11</div>
+  <p class="chapter-label">ఆమె కష్టం · Her Path</p>
+  <h2 class="chapter-title">"తను చదువుతుంది… ఆ కష్టానికి మంచి రోజు రావాలి"</h2>
+  <div class="chapter-body">
+    <p>Radha — నువ్వు ఇప్పుడు చదువుతున్నావు, కష్టపడుతున్నావు. ఆ path సులభంగా లేదని నాకు తెలుసు. కానీ నువ్వు ఆగవు — ఎందుకంటే నీలో ఆ strength ఉంది.</p>
+    <p>నీ చదువు పూర్తయి మంచి job వచ్చే ఆ రోజు కోసం నేను కూడా ఎదురు చూస్తున్నాను. ఆ రోజు నీ అమ్మ నాన్న మొహంలో <span class="highlight">గర్వం చూడాలని ఉంది.</span> అది నా wish.</p>
+    <p>నీ కష్టానికి తగ్గ reward తప్పకుండా వస్తుంది Radha — నువ్వు deserve చేస్తున్నావు.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">🙏 నా Prayer నీ కోసం</p>
+    <p class="memory-text">దేవుడా — Radha కి మంచి రోజు రానీ. ఆమె కష్టానికి తగ్గ result రానీ. ఆమె అమ్మ నాన్న మొహంలో సంతోషం చూపించు. ఇది నా ఒక్క కోరిక — ప్రతిరోజూ, ప్రతి రాత్రి.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"Hard paths often lead to the most beautiful destinations."</p>
+    <p class="quote-telugu">కష్టమైన దారులే చాలాసార్లు అత్యంత అందమైన చోటుకి తీసుకెళ్తాయి.</p>
+  </div>
+</section>
+
+<div class="sep">· · 🌸 · ·</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 12
+════════════════════════════════════ -->
+<section class="chapter" id="ch12">
+  <div class="chapter-num">12</div>
+  <p class="chapter-label">నా కల · My Hope</p>
+  <h2 class="chapter-title">"నీ నాన్న okay అంటే చాలు… ఇంక నాకు ఏమీ వద్దు"</h2>
+  <div class="chapter-body">
+    <p>ఒక్కసారి ఆ రోజు imagine చేసుకుంటాను — నీ నాన్న దగ్గరికి వెళ్ళి చెప్తాను, "మీ అమ్మాయిని నేను marriage చేసుకుంటాను" అని. ఆ ఒక్క మాట చెప్పడానికి నా heart ఎంత beat అవుతుందో తెలుసా?</p>
+    <p>నీ నాన్న "okay" అంటే — ఆ రోజు నేను ఈ world లో <span class="highlight">అత్యంత happy person</span> అవుతాను. ఇంకొకరు అంత happy గా ఉండరు అని నాకు నమ్మకం. అది నా life లో biggest moment అవుతుంది.</p>
+    <p>ఏం జరిగినా — అన్నీ మన మంచికే. ఆ నమ్మకం నాకు ఉంది. Hope for the best — అదే నా మంత్రం.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"If her father says yes — the whole universe would feel like it smiled at me."</p>
+    <p class="quote-telugu">నీ నాన్న "okay" అంటే — ఈ universe మొత్తం నాకు నవ్వినట్టు అనిపిస్తుంది.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">💍 నా Dream Moment</p>
+    <p class="memory-text">నీ నాన్న దగ్గర permission అడగడం, నీ అమ్మ నవ్వడం, నువ్వు సిగ్గుపడటం — ఆ ఒక్క scene నా మనసులో వేయిసార్లు replay అయింది. అది dream అయినా సరే — ఆ dream నాకు చాలా real గా అనిపిస్తుంది.</p>
+  </div>
+</section>
+
+<div class="ornament">✦ · ✦ · ✦</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 13
+════════════════════════════════════ -->
+<section class="chapter" id="ch13">
+  <div class="chapter-num">13</div>
+  <p class="chapter-label">నీ కోపం కూడా నాకు ఇష్టమే · Even Your Anger</p>
+  <h2 class="chapter-title">"నీ కోపం, నీ నవ్వు, నీ ప్రేమ — అన్నీ కలిపితే నువ్వే ప్రేమ అంటే"</h2>
+  <div class="chapter-body">
+    <p>Radha — నువ్వు కోపంగా ఉన్నప్పుడు కూడా నాకు నువ్వు ఇష్టమే. నీ కోపం కూడా నీది కాబట్టి ఇష్టం. నీ నవ్వు నాకు ఇష్టం, నీ silence నాకు ఇష్టం, నీ replies నాకు ఇష్టం — నువ్వు మొత్తం నాకు ఇష్టం.</p>
+    <p>నీ ప్రేమ, నీ కోపం, నీ నవ్వు — అన్నీ కలిపితే అదే నువ్వు. <span class="highlight">అదే ప్రేమ అంటే.</span> నేను నిన్ను ఇష్టపడింది నీ perfect side కోసం కాదు — నీ అన్ని sides కోసం.</p>
+    <p>నువ్వు photo అడిగినా ventane పంపేదానివి కావు — కానీ నా దగ్గర ఒక్క photo ఉంది. అది చాలు నాకు. ఆ ఒక్క photo లో నువ్వు నవ్వుతున్నావు — ఆ నవ్వు చాలు నా జీవితానికి.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">📸 ఆ ఒక్క Photo</p>
+    <p class="memory-text">నీ photo అడిగినా నువ్వు పంపవు — అది నాకు తెలుసు. కానీ నా దగ్గర ఉన్న ఆ ఒక్క photo — అది నా treasure. ఆ ఒక్క photo తో నేను మొత్తం world గెలిచినట్టు feel అవుతాను. నీతో photo అడగడం కాదు — నీతో పెట్టుకున్నానని చెప్పుకోవాలని ఉంది అంతే.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"I fell for your anger, your silence, your rare smile — all of you, not just the good parts."</p>
+    <p class="quote-telugu">నీ కోపం, నీ మౌనం, నీ అరుదైన నవ్వు — నీలో అన్నీ నాకు ఇష్టమే. మంచి sides మాత్రమే కాదు.</p>
+  </div>
+</section>
+
+<div class="sep">· · ❤️‍🩹 · ·</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 14
+════════════════════════════════════ -->
+<section class="chapter" id="ch14">
+  <div class="chapter-num">14</div>
+  <p class="chapter-label">నిన్ను Miss అవుతున్నాను · I Miss You</p>
+  <h2 class="chapter-title">"నిన్ను నిజంగా miss అవుతున్నాను… నీతో phone లో మాట్లాడాలని ఉంది"</h2>
+  <div class="chapter-body">
+    <p>Radha — నేను నిన్ను miss అవుతున్నాను. Genuinely. నీతో phone లో మాట్లాడాలని ఉంది — ఒక్క call చాలు, ఒక్క voice చాలు. అంతకు మించి ఏమీ లేదు నా దగ్గర.</p>
+    <p>నీ voice వింటే నా day complete అయినట్టు ఉంటుంది. నీతో మాట్లాడటం నాకు <span class="highlight">oxygen లాంటిది</span> — అది లేకుండా నేను survive అవుతున్నాను, కానీ comfortable గా లేను.</p>
+    <p>నువ్వు ఎంత అంటే నాకు ఇష్టం అది పెట్టుకో — ఆ ఇష్టం తగ్గదు. Reduce అవదు. నువ్వు ఎంత దూరంగా ఉన్నా — నా మనసులో నువ్వు ఎప్పుడూ దగ్గరే ఉంటావు.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">📞 నీతో మాట్లాడాలని ఉంది</p>
+    <p class="memory-text">ఈ రాత్రి నీతో మాట్లాడాలని ఉంది Radha. నువ్వు ఎలా ఉన్నావు అని అడగాలని ఉంది. నీ నవ్వు వినాలని ఉంది. నువ్వు "ఏంటి?" అని అడిగినా చాలు — ఆ ఒక్క మాట చాలు నాకు. That's all I want.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"Missing someone is the heart's way of reminding you that they matter — deeply."</p>
+    <p class="quote-telugu">ఒకరిని miss అవ్వడం అంటే — నీ heart నీకు చెప్తుంది, వాళ్ళు నీకు ఎంత ముఖ్యమో అని.</p>
+  </div>
+</section>
+
+<div class="ornament">✦ · ✦ · ✦</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 11
+════════════════════════════════════ -->
+<section class="chapter" id="ch11b">
+  <div class="chapter-num">11</div>
+  <p class="chapter-label">ఆమె కల · Her Dream Path</p>
+  <h2 class="chapter-title">"తను చదువుతుంది… ఆ path లో తనకు అన్నీ మంచి జరగాలి"</h2>
+  <div class="chapter-body">
+    <p>Radha చదువుతుంది — కష్టపడుతుంది. ఆ కష్టం వెనక ఎంత dedication ఉందో నాకు అర్థమవుతుంది. అది ఆమె greatness.</p>
+    <p>ఆ path లో ప్రతి step లో తనకు success రావాలి. తన కల నిజమవ్వాలి — <span class="highlight">ఆమె deserve చేస్తుంది.</span> అది నా wish, నా prayer, నా hope.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"She works in silence — but her results will speak."</p>
+    <p class="quote-telugu">ఆమె నిశ్శబ్దంగా కష్టపడుతుంది — కానీ ఆమె results మాట్లాడతాయి.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">🙏 నా Wish Radha కోసం</p>
+    <p class="memory-text">దేవుడా — Radha కి అన్నీ మంచి జరగనీ. ఆమె మనసు ఎప్పుడూ strong గా ఉండనీ. ఆమె కల నిజమవ్వనీ. ఆమె అమ్మ నాన్న ఆమె వల్ల సంతోషపడనీ.</p>
+  </div>
+</section>
+
+<div class="sep">· · 🌸 · ·</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 12
+════════════════════════════════════ -->
+<section class="chapter" id="ch12">
+  <div class="chapter-num">12</div>
+  <p class="chapter-label">నాన్నకు అడగాలి · The Dream I Dare to Dream</p>
+  <h2 class="chapter-title">"మీ నాన్న okay అంటే… నా కంటే happy వ్యక్తి ఇంకొకరు ఉండరు"</h2>
+  <div class="chapter-body">
+    <p>ఒక రోజు నేను ఆమె నాన్న దగ్గరకు వెళ్ళాలని ఉంది — <span class="highlight">"మీ అమ్మాయిని నేను marriage చేసుకుంటాను"</span> అని అడగాలని ఉంది. ఆ ఒక్క మాట అడగడానికి నా మనసు ఎప్పటి నుండో prepare అవుతుంది.</p>
+    <p>మీ నాన్న "okay" అన్న ఆ ఒక్క క్షణం — నా జీవితంలో అత్యంత పెద్ద moment అవుతుంది. ఆ రోజు నా కంటే happy వ్యక్తి ఈ ప్రపంచంలో ఇంకొకరు ఉండరు. Guarantee.</p>
+    <p>కానీ అది అన్నిటికంటే ముందు Radha కి నచ్చాలి. ఆమె heart లో నాకు చోటు దొరకాలి. ఆ తర్వాత మాత్రమే నాన్న దగ్గరకు వెళ్ళే హక్కు నాకు ఉంటుంది.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">💍 నా Dream Moment</p>
+    <p class="memory-text">మీ నాన్న నాకు "అవును" అన్న ఆ రోజు — నేను ఆయన కాళ్ళకు దండం పెట్టి, కళ్ళు తుడుచుకుంటాను. ఆ happiness కి మాటలు సరిపోవు. అది నా life లో అత్యంత పవిత్రమైన రోజు అవుతుంది.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"All I need is one 'yes' — from her heart first, then from her father."</p>
+    <p class="quote-telugu">నాకు కావలసింది ఒక్క 'అవును' — ముందు ఆమె heart నుండి, తర్వాత ఆమె నాన్న నుండి.</p>
+  </div>
+</section>
+
+<div class="ornament">✦ · ✦ · ✦</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 13
+════════════════════════════════════ -->
+<section class="chapter" id="ch13">
+  <div class="chapter-num">13</div>
+  <p class="chapter-label">ఆమె కోపం కూడా · Even Her Anger</p>
+  <h2 class="chapter-title">"నీ కోపం కూడా నాకు ఇష్టమే Radha… నువ్వే నా ప్రేమ"</h2>
+  <div class="chapter-body">
+    <p>Radha నాపై కోపగించుకుంటే — ఆ కోపం కూడా నాకు ఇష్టంగా అనిపిస్తుంది. ఎందుకంటే ఆమె కోపంలో కూడా ఆమే ఉంటుంది — ఆమె నవ్వు, ఆమె మాటలు, ఆమె expression — <span class="highlight">అన్నీ నాకు ఇష్టమే.</span></p>
+    <p>నీ నవ్వు నాకు ఇష్టం. నీ కోపం నాకు ఇష్టం. నీ మాట్లాడటం నాకు ఇష్టం. నీ మాట్లాడకపోవడం కూడా నాకు ఇష్టం. నువ్వు మొత్తం — అన్నీ కలిపితే నీవే ప్రేమ అంటే.</p>
+    <p>ఇది possession కాదు — ఇది acceptance. నువ్వు ఎలా ఉన్నా, నేను నిన్ను అలానే ఇష్టపడతాను. Change అవ్వమని అడగను — నువ్వు నువ్వుగా ఉండటమే నాకు చాలు.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"I love her laughter. I love her silence. I love her anger. I love all of her — that is what love means."</p>
+    <p class="quote-telugu">ఆమె నవ్వు, ఆమె మౌనం, ఆమె కోపం — అన్నీ ఇష్టం. అదే ప్రేమ అంటే.</p>
+  </div>
+</section>
+
+<div class="sep">· · ❤️‍🩹 · ·</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 14
+════════════════════════════════════ -->
+<section class="chapter" id="ch14">
+  <div class="chapter-num">14</div>
+  <p class="chapter-label">ఒక్క Photo · One Photo is Enough</p>
+  <h2 class="chapter-title">"నా దగ్గర ఒక్క photo ఉంది… అది చాలు నాకు"</h2>
+  <div class="chapter-body">
+    <p>Photo అడిగితే వెంటనే పంపించేది కాదు — పంపిస్తే "నేను పంపించాను" అని కాదు, <span class="highlight">"నాతో పెట్టుకున్నావని చెప్పుకోవాలని"</span> ఉంటుంది. ఆ మాత్రం closeness కోసం నేను కోరుకున్నాను.</p>
+    <p>కానీ నా దగ్గర ఒక్క photo ఉంది. ఒక్కటే. అది చాలు. అందులో నువ్వు ఉన్నావు — నీ నవ్వు ఉంది, నీ కళ్ళు ఉన్నాయి. అది నా దగ్గర ఉన్న అతిపెద్ద treasure.</p>
+    <p>ఒక్క photo కోసం ఇంత feel అవుతున్నాను అంటే — నువ్వు నా life లో ఎంత ఉన్నావో అర్థమవుతుంది Radha.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">📸 ఆ ఒక్క Photo</p>
+    <p class="memory-text">నా దగ్గర ఉన్న ఆ ఒక్క photo — దానిని చూసినప్పుడల్లా నా మనసు నిండిపోతుంది. ఇంకేమీ వద్దు. ఆ నవ్వు చాలు. ఆ కళ్ళు చాలు. నువ్వు చాలు Radha.</p>
+  </div>
+</section>
+
+<div class="ornament">✦ · ✦ · ✦</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 15
+════════════════════════════════════ -->
+<section class="chapter" id="ch15">
+  <div class="chapter-num">15</div>
+  <p class="chapter-label">నిన్ను Miss చేస్తున్నాను · I Miss You</p>
+  <h2 class="chapter-title">"నిన్ను నిజంగా miss అవుతున్నాను Radha… నీతో phone లో మాట్లాడాలని ఉంది"</h2>
+  <div class="chapter-body">
+    <p>నేను నిన్ను miss చేస్తున్నాను — ఇది simply చెప్పడం కష్టంగా ఉంది, కానీ నిజం. నీతో phone లో మాట్లాడాలని ఉంది. నీ voice వినాలని ఉంది. అంతే — అంతకు మించి ఏమీ వద్దు.</p>
+    <p>నువ్వు "హలో" అంటే చాలు — నా రోజు అయిపోయినట్టే. నీ voice లో ఒక magic ఉంది Radha — అది నాకు తెలుసు, నీకు తెలియకపోవచ్చు.</p>
+    <p>నిన్ను ఎంత ఇష్టపడుతున్నానో చెప్పలేను — కానీ ఆ feeling ఎప్పటికీ తగ్గదు. <span class="highlight">అది grow అవుతూనే ఉంటుంది, quietly, strongly.</span></p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"Missing someone is your heart's way of saying — they matter more than you admit."</p>
+    <p class="quote-telugu">ఒకరిని miss చేయడం అంటే — వాళ్ళు నీ heart లో ఎంతగా ఉన్నారో అర్థమవుతుంది.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">📞 నేను కోరుకునేది</p>
+    <p class="memory-text">ఒక్కసారి నీతో మాట్లాడాలని ఉంది — stress లేకుండా, block భయం లేకుండా, just నువ్వు నేను. నీ voice వినాలని ఉంది. నువ్వు నవ్వాలని ఉంది. అది నా చిన్న కోరిక Radha — చాలా చిన్నది, కానీ నాకు చాలా పెద్దది.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CHAPTER 16
+════════════════════════════════════ -->
+<section class="chapter" id="ch16">
+  <div class="chapter-num">16</div>
+  <p class="chapter-label">నీ పక్కన ఉండాలని · I Want to Be Beside You</p>
+  <h2 class="chapter-title">"నీ కల నా కల… నీ పక్కన నేను ఉండాలని"</h2>
+  <div class="chapter-body">
+    <p>Radha — నీకు ఇంకా job రాలేదు. నువ్వు ఇంకా చదువుతున్నావు. ఆ path లో నువ్వు ఒంటరిగా కష్టపడుతున్నావు — అది నాకు కనిపిస్తుంది. ఆ struggle లో నేను నీ పక్కన ఉండాలని ఉంది.</p>
+    <p>నీ dreams full fill అవ్వాలి — ఆ ఒక్క కోరిక నాది. నువ్వు job తెచ్చుకుని, నీ అమ్మ నాన్న ని చాలా బాగా చూసుకోవాలని ఉంది నీకు — <span class="highlight">ఆ moment కి నేను కూడా witness అవ్వాలని ఉంది.</span></p>
+    <p>నీ success లో నేను ఎక్కడా credit తీసుకోను — కానీ నీ పక్కన ఉండటమే నాకు చాలు. నీ నవ్వు చూడటం, నువ్వు గెలిచినప్పుడు happy గా అనిపించడం — అది నా reward. అంతకు మించి ఏమీ వద్దు.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">🌟 నీ Dreams నా Prayers</p>
+    <p class="memory-text">దేవుడా — Radha కి మంచి job రానీ. ఆమె అమ్మ నాన్న ఆమె వల్ల proud పడనీ. ఆమె కష్టానికి తగ్గ reward రానీ. ఆ రోజు నేను దూరంగా ఉన్నా — నా మనసు మొత్తం ఆమెతో celebrate అవుతుంది. ఇది నా daily prayer, నా nightly hope.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"The greatest love is the one that cheers for you — even from the shadows."</p>
+    <p class="quote-telugu">అత్యంత గొప్ప ప్రేమ అది — నీ success కి నిశ్శబ్దంగా చప్పట్లు కొట్టే ప్రేమ.</p>
+  </div>
+</section>
+
+<div class="ornament">✦ · ✦ · ✦</div>
+
+<!-- ══════════════════════════════════
+     CHAPTER 17
+════════════════════════════════════ -->
+<section class="chapter" id="ch17">
+  <div class="chapter-num">17</div>
+  <p class="chapter-label">నా సర్వస్వం · My Everything</p>
+  <h2 class="chapter-title">"నువ్వు నా heart… నువ్వు నా everything ❤️"</h2>
+  <div class="chapter-body">
+    <p>Radha — ఈ మాటలు చదివినా చదవకపోయినా, నువ్వు feel చేసినా చేయకపోయినా — నాకు ఒక్కటే తెలుసు. నువ్వు నా heart. నువ్వు నా everything. ఇది drama కాదు — ఇది నా నిజమైన confession.</p>
+    <p>నీ నవ్వు నాకు ఇష్టం. నీ కోపం నాకు ఇష్టం. నీ silence నాకు ఇష్టం. నీ మాటలు నాకు ఇష్టం. <span class="highlight">నువ్వు మొత్తం — అన్నీ కలిపితే నీవే ప్రేమ.</span> అది నాకు అర్థమైన greatest truth.</p>
+    <p>ఏం జరిగినా, ఎంత దూరం వెళ్ళినా — "Hope for the best" అని నేను ఇప్పటికీ believe చేస్తున్నాను. ఎందుకంటే నువ్వు involve అయిన ఏ కల అయినా చెడ్డది కాదు — అది beautiful అవుతుంది.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"She is not just someone I love — she is someone I think about in my every quiet moment."</p>
+    <p class="quote-telugu">ఆమె నేను ప్రేమించే వ్యక్తి మాత్రమే కాదు — నా ప్రతి నిశ్శబ్దపు క్షణంలో నేను ఆలోచించే వ్యక్తి.</p>
+  </div>
+
+  <div class="memory-card">
+    <p class="memory-label">❤️ నా Radha కి</p>
+    <p class="memory-text">నువ్వు ఒక్కసారి నవ్వితే చాలు — నా world complete అవుతుంది. నువ్వు ఒక్కసారి "hello" అంటే చాలు — నా రోజు meaningful అవుతుంది. నువ్వు నా దగ్గర ఒక్క photo ఇవ్వకపోయినా — నా దగ్గర ఉన్న ఆ ఒక్క photo చాలు. నువ్వు నాకు respond చేయకపోయినా — నా ప్రేమ respond చేస్తూనే ఉంటుంది. I love you, my Radha. ❤️</p>
+  </div>
+</section>
+
+<div class="sep">· · ❤️ · ·</div>
+
+<!-- ══════════════════════════════════
+     FINALE
+════════════════════════════════════ -->
+<section id="finale">
+  <p class="finale-label">చివరి మాట · Final Words</p>
+  <h2 class="finale-title">I Love You, My Radha ❤️<br>My Everything ❤️ My Heart</h2>
+  <p class="finale-message">
+    నీ కోపం నాకు ఇష్టం.<br>
+    నీ నవ్వు నాకు ఇష్టం.<br>
+    నీ silence నాకు ఇష్టం.<br>
+    నీ ప్రేమ నాకు ఇష్టం.<br>
+    నువ్వు మొత్తం — అన్నీ కలిపితే నీవే ప్రేమ.<br><br>
+    నీకు ఇంకా job రాలేదు —<br>
+    నువ్వు ఇంకా చదువుతున్నావు.<br>
+    నీ dreams అన్నీ full fill అవ్వాలి.<br>
+    నీ అమ్మ నాన్న ని నువ్వు చాలా బాగా చూసుకోవాలి —<br>
+    ఆ క్షణానికి నేను కూడా నీ పక్కన ఉండాలని ఉంది.<br><br>
+    నీ నాన్న "okay" అంటే చాలు —<br>
+    ఈ world లో నాకంటే happy person ఇంకొకరు ఉండరు.<br>
+    <span class="highlight">Guarantee.</span><br><br>
+    నీ చదువు బాగా జరగాలి.<br>
+    నీ అమ్మ నాన్న చాలా బాగుండాలి.<br>
+    నీ కల నిజమవ్వాలి — నువ్వు deserve చేస్తున్నావు.<br><br>
+    ఏం జరిగినా — అన్నీ మన మంచికే.<br>
+    <span class="highlight">Hope for the best… ❤️</span><br><br>
+    నా దగ్గర నీ ఒక్క photo ఉంది —<br>
+    అది చాలు నాకు. ఇంక ఏమీ వద్దు.<br><br>
+    నేను నిన్ను నిజంగా miss అవుతున్నాను Radha.<br>
+    నీతో phone లో మాట్లాడాలని ఉంది —<br>
+    అంతే, అంతకు మించి ఏమీ లేదు నా దగ్గర.<br><br>
+    నీ కోపం కూడా నాకు ఇష్టమే Radha —<br>
+    నీ నవ్వు, నీ కోపం, నీ ప్రేమ — మొత్తం కలిపితే నీవే ప్రేమ.<br><br>
+    నువ్వు నా heart. నువ్వు నా everything.<br>
+    ఈ documentary నా గురించి కాదు —<br>
+    ఇది నా <span class="gold">Radha గురించి. నా love గురించి. నా truth గురించి.</span>
+  </p>
+  <span class="finale-heart">❤️</span>
+  <p class="finale-sign">
+    — Krishna
+    <span>నీ మనసులో ఒక మూల చోటు కోసం ఎదురు చూసే నీ Krishna</span>
+    <span style="margin-top:0.6rem; color: var(--rose); font-size:0.8rem;">I Love You My Radha ❤️ My Everything ❤️ My Heart</span>
+  </p>
+</section>
+
+<!-- ══════════════════════════════════
+     JS: PETALS + SCROLL REVEAL
+════════════════════════════════════ -->
+<script>
+// Generate petals
+const container = document.getElementById('petals');
+const colors = ['#c4405a','#8b1a2e','#c9a84c','#e8758a','#f5ede0'];
+for (let i = 0; i < 28; i++) {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.background = colors[Math.floor(Math.random() * colors.length)];
+  p.style.width = (6 + Math.random() * 8) + 'px';
+  p.style.height = (9 + Math.random() * 10) + 'px';
+  p.style.animationDuration = (8 + Math.random() * 14) + 's';
+  p.style.animationDelay = (Math.random() * 12) + 's';
+  p.style.opacity = 0;
+  container.appendChild(p);
+}
+
+// Scroll reveal
+const chapters = document.querySelectorAll('.chapter');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.12 });
+chapters.forEach(c => observer.observe(c));
+
+// Finale reveal
+const finale = document.getElementById('finale');
+const finaleObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      finale.style.opacity = '1';
+      finale.style.transform = 'none';
+    }
+  });
+}, { threshold: 0.1 });
+finaleObs.observe(finale);
+finale.style.opacity = '0';
+finale.style.transform = 'translateY(30px)';
+finale.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
+</script>
+</body>
+</html>
